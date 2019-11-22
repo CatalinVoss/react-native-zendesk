@@ -39,11 +39,11 @@ class RNZendesk: RCTEventEmitter {
             let clientId = config["clientId"] as? String,
             let zendeskUrl = config["zendeskUrl"] as? String else { return }
         
-        // UI Config
-        Theme.currentTheme.primaryColor = UIColor.orange
-        
         Zendesk.initialize(appId: appId, clientId: clientId, zendeskUrl: zendeskUrl)
         Support.initialize(withZendesk: Zendesk.instance)
+
+        // UI Config
+        Theme.currentTheme.primaryColor = #colorLiteral(red: 0.2735899687, green: 0.7367950082, blue: 0.7950475812, alpha: 1)
     }
     
     // MARK: - Indentification
@@ -71,11 +71,12 @@ class RNZendesk: RCTEventEmitter {
             let helpCenter = HelpCenterUi.buildHelpCenterOverviewUi(withConfigs: [hcConfig])
             
             let nvc = UINavigationController(rootViewController: helpCenter)
+            nvc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
             
             // Hackily remove the back/exit button
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                let emptyButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
                 nvc.navigationBar.topItem?.leftBarButtonItem = emptyButton
             }
 
@@ -102,7 +103,6 @@ class RNZendesk: RCTEventEmitter {
             let requestListController = RequestUi.buildRequestList()
             
             let nvc = UINavigationController(rootViewController: requestListController)
-            nvc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
         }
     }
