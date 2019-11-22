@@ -39,6 +39,9 @@ class RNZendesk: RCTEventEmitter {
             let clientId = config["clientId"] as? String,
             let zendeskUrl = config["zendeskUrl"] as? String else { return }
         
+        // UI Config
+        Theme.currentTheme.primaryColor = UIColor.orange
+        
         Zendesk.initialize(appId: appId, clientId: clientId, zendeskUrl: zendeskUrl)
         Support.initialize(withZendesk: Zendesk.instance)
     }
