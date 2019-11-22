@@ -1,6 +1,6 @@
 {
-  "name": "react-native-zendesk",
-  "version": "2.1.0",
+  "name": "zendesk-bridge",
+  "version": "1.0.0",
   "description": "Zendesk SDK for React Native.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,10 +8,10 @@
     "build": "rimraf lib && tsc",
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\"",
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn lint",
-    "preversion": "yarn lint",
-    "version": "yarn format && git add -A src",
+    "prepare": "npm build",
+    "prepublishOnly": "npm lint",
+    "preversion": "npm lint",
+    "version": "npm format && git add -A src",
     "postversion": "git push && git push --tags"
   },
   "files": [
@@ -20,10 +20,10 @@
     "android/**/*",
     "*.podspec"
   ],
-  "homepage": "https://github.com/dcvz/react-native-zendesk#readme",
+  "homepage": "https://github.com/CatalinVoss/react-native-zendesk#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dcvz/react-native-zendesk.git"
+    "url": "git+https://github.com/CatalinVoss/react-native-zendesk.git"
   },
   "keywords": [
     "zendesk",
@@ -37,7 +37,7 @@
   "author": "dcvz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dcvz/react-native-zendesk/issues"
+    "url": "https://github.com/CatalinVoss/react-native-zendesk/issues"
   },
   "devDependencies": {
     "@types/react-native": "^0.60.0",
