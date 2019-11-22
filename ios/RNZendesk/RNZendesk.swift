@@ -75,8 +75,8 @@ class RNZendesk: RCTEventEmitter {
             
             // Hackily remove the back/exit button
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                nvc.navigationBar.topItem?.leftBarButtonItem = settingsButton
+                let emptyButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                nvc.navigationBar.topItem?.leftBarButtonItem = emptyButton
             }
 
         }
