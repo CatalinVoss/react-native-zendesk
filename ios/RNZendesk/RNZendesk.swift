@@ -92,6 +92,7 @@ class RNZendesk: RCTEventEmitter {
             let requestListController = RequestUi.buildRequestList()
             
             let nvc = UINavigationController(rootViewController: requestListController)
+            nvc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
         }
     }
