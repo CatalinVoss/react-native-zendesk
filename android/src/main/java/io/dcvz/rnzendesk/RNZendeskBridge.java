@@ -68,7 +68,6 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showHelpCenter(ReadableMap options) {
-//        Boolean hideContact = options.getBoolean("hideContactUs") || false;
         UiConfig hcConfig = HelpCenterActivity.builder()
                 .withContactUsButtonVisible(!(options.hasKey("hideContactSupport") && options.getBoolean("hideContactSupport")))
                 .config();
