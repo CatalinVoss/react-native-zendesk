@@ -68,7 +68,7 @@ class RNZendesk: RCTEventEmitter {
             let helpCenter = HelpCenterUi.buildHelpCenterOverviewUi(withConfigs: [hcConfig])
             
             let nvc = UINavigationController(rootViewController: helpCenter)
-            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: true, completion: nil)
+            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
         }
     }
     
@@ -82,7 +82,7 @@ class RNZendesk: RCTEventEmitter {
             let requestScreen = RequestUi.buildRequestUi(with: [config])
             
             let nvc = UINavigationController(rootViewController: requestScreen)
-            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: true, completion: nil)
+            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
         }
     }
 
@@ -92,7 +92,7 @@ class RNZendesk: RCTEventEmitter {
             let requestListController = RequestUi.buildRequestList()
             
             let nvc = UINavigationController(rootViewController: requestListController)
-            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: true)
+            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
         }
     }
 }
