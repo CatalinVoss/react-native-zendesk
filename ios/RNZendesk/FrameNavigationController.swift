@@ -13,16 +13,14 @@
 import Foundation
 
 class FrameNavigationController: UINavigationController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     func clearLeftButton() {
-        let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        self.navigationBar.topItem?.leftBarButtonItem = emptyButton
+        if (self.viewControllers.count == 1) {
+            let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+            self.navigationBar.topItem?.leftBarButtonItem = emptyButton
+            self.visibleViewController?.navigationItem.leftBarButtonItem = emptyButton
+        }
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.clearLeftButton()

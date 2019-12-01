@@ -13,7 +13,7 @@ import ZendeskCoreSDK
 import CommonUISDK
 
 @objc(RNZendesk)
-class RNZendesk: RCTEventEmitter {
+class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
 
     override public static func requiresMainQueueSetup() -> Bool {
         return false;
@@ -67,19 +67,13 @@ class RNZendesk: RCTEventEmitter {
     func showHelpCenter(with options: [String: Any]) {
         DispatchQueue.main.async {
             let hcConfig = HelpCenterUiConfiguration()
-            hcConfig.hideContactSupport = (options["hideContactSupport"] as? Bool) ?? false
+            hcConfig.showContactOptionsOnEmptySearch = (options["showContactOptionsOnEmptySearch"] as? Bool) ?? false
             let helpCenter = HelpCenterUi.buildHelpCenterOverviewUi(withConfigs: [hcConfig])
             
             let nvc = FrameNavigationController(rootViewController: helpCenter)
+            nvc.delegate = self
             nvc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
-            
-//            // Hackily remove the back/exit button
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-//                nvc.navigationBar.topItem?.leftBarButtonItem = emptyButton
-//            }
-
         }
     }
     
@@ -93,6 +87,7 @@ class RNZendesk: RCTEventEmitter {
             let requestScreen = RequestUi.buildRequestUi(with: [config])
             
             let nvc = FrameNavigationController(rootViewController: requestScreen)
+            nvc.delegate = self
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
         }
     }
@@ -103,7 +98,27 @@ class RNZendesk: RCTEventEmitter {
             let requestListController = RequestUi.buildRequestList()
             
             let nvc = FrameNavigationController(rootViewController: requestListController)
+            nvc.delegate = self
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
+        }
+    }
+    
+    // MARK: - View Controller Lifecycle
+    
+    // Hack away Zendesk exit button whenever we return to root
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        self.clearLeftButton(navigationController)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        self.clearLeftButton(navigationController)
+    }
+
+    func clearLeftButton(_ navigationController: UINavigationController) {
+        if (navigationController.viewControllers.count == 1) {
+            let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+            navigationController.navigationBar.topItem?.leftBarButtonItem = emptyButton
+            navigationController.visibleViewController?.navigationItem.leftBarButtonItem = emptyButton
         }
     }
 }
