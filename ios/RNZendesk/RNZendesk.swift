@@ -70,15 +70,15 @@ class RNZendesk: RCTEventEmitter {
             hcConfig.hideContactSupport = (options["hideContactSupport"] as? Bool) ?? false
             let helpCenter = HelpCenterUi.buildHelpCenterOverviewUi(withConfigs: [hcConfig])
             
-            let nvc = UINavigationController(rootViewController: helpCenter)
+            let nvc = FrameNavigationController(rootViewController: helpCenter)
             nvc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
             
-            // Hackily remove the back/exit button
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-                nvc.navigationBar.topItem?.leftBarButtonItem = emptyButton
-            }
+//            // Hackily remove the back/exit button
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+//                nvc.navigationBar.topItem?.leftBarButtonItem = emptyButton
+//            }
 
         }
     }
@@ -92,7 +92,7 @@ class RNZendesk: RCTEventEmitter {
             }
             let requestScreen = RequestUi.buildRequestUi(with: [config])
             
-            let nvc = UINavigationController(rootViewController: requestScreen)
+            let nvc = FrameNavigationController(rootViewController: requestScreen)
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false, completion: nil)
         }
     }
@@ -102,7 +102,7 @@ class RNZendesk: RCTEventEmitter {
         DispatchQueue.main.async {
             let requestListController = RequestUi.buildRequestList()
             
-            let nvc = UINavigationController(rootViewController: requestListController)
+            let nvc = FrameNavigationController(rootViewController: requestListController)
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
         }
     }
