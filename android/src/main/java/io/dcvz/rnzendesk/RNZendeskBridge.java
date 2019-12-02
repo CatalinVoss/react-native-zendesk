@@ -78,6 +78,9 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getReactApplicationContext().startActivity(intent);
+
+        // Remove ourselves from the back stack, leaving only Zendesk.
+        getCurrentActivity().finish();
     }
     
     @ReactMethod
@@ -90,6 +93,9 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getReactApplicationContext().startActivity(intent);
+
+        // Remove ourselves from the back stack, leaving only Zendesk.
+        getCurrentActivity().finish();
     }
 
     @ReactMethod
@@ -99,5 +105,8 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getReactApplicationContext().startActivity(intent);
+
+        // Remove ourselves from the back stack, leaving only Zendesk.
+        getCurrentActivity().finish();
     }
 }
