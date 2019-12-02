@@ -9,4 +9,4 @@ npm install --save CatalinVoss/react-native-zendesk#master
 2. Run `pod install` for iOS and config the android app
 
 ## Getting Started
-API is very small and can be seen [here](https://github.com/CatalinVoss/react-native-zendesk/blob/master/src/index.ts)
+API is very small and can be seen [here](https://github.com/CatalinVoss/react-native-zendesk/blob/master/src/index.js)
