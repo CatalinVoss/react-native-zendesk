@@ -100,7 +100,7 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showTicketList() {
-        Intent intent = RequestListActivity.builder()
+        Intent intent = CustomRequestListActivity.builder()
                 .intent(getReactApplicationContext());
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
