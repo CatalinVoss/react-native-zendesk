@@ -46,7 +46,17 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
         Support.INSTANCE.init(Zendesk.INSTANCE);
     }
 
-    // MARK: - Indentification
+    // MARK: - Identification
+
+    @ReactMethod
+    public void registerPushNotifications(String token) {
+        Zendesk.INSTANCE.provider().pushRegistrationProvider().registerWithDeviceIdentifier(token, null);
+    }
+
+    @ReactMethod
+    public void unregisterPushNotifications() {
+        Zendesk.INSTANCE.provider().unregisterDevice(null);
+    }
 
     @ReactMethod
     public void identifyJWT(String token) {
