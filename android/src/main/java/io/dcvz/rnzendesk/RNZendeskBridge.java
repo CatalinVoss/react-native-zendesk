@@ -55,7 +55,7 @@ public class RNZendeskBridge extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void unregisterPushNotifications() {
-        Zendesk.INSTANCE.provider().unregisterDevice(null);
+        Zendesk.INSTANCE.provider().pushRegistrationProvider().unregisterDevice(null);
     }
 
     @ReactMethod
