@@ -19,6 +19,8 @@ RCT_EXTERN_METHOD(initialize:(NSDictionary *)config);
 
 RCT_EXTERN_METHOD(identifyJWT:(NSString *)token);
 RCT_EXTERN_METHOD(identifyAnonymous:(NSString *)name email:(NSString *)email);
+RCT_EXTERN_METHOD(registerPushNotifications:(NSString *)token);
+RCT_EXTERN_METHOD(unregisterPushNotifications);
 
 // MARK: - UI Methods
 
