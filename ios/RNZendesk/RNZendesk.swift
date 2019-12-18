@@ -60,7 +60,25 @@ class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
         let identity = Identity.createAnonymous(name: name, email: email)
         Zendesk.instance?.setIdentity(identity)
     }
+
+    @objc(registerPushNotifications:)
+    func registerPushNotifications(token: String?) {
+        guard let token = token else { return }
+        let locale = NSLocale.preferredLanguages.first ?? "en"
+        ZDKPushProvider(zendesk: Zendesk.instance!).register(deviceIdentifier: token, locale: locale) { (pushResponse, error) in
+            if error != nil {
+                print("Couldn't register device: \(token). Error: \(error)")
+            } else {
+                print("Successfully registered device: \(token)")
+            }
+        }
+    }
     
+    @objc(unregisterPushNotifications)
+    func unregisterPushNotifications() {
+        ZDKPushProvider(zendesk: Zendesk.instance!).unregisterForPush()
+    }
+
     // MARK: - UI Methods
     
     @objc(showHelpCenter:)
