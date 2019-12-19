@@ -63,6 +63,19 @@ class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
 
     @objc(registerPushNotifications:)
     func registerPushNotifications(token: String?) {
+        // Ensure push notifications are fired up properly at this point
+        // Workaround for iOS 10+ issue with firebase React Native wrapper
+        DispatchQueue.main.async {
+            if #available(iOS 10.0, *) {
+              let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+              UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            }
+            
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
         guard let token = token else { return }
         let locale = NSLocale.preferredLanguages.first ?? "en"
         ZDKPushProvider(zendesk: Zendesk.instance!).register(deviceIdentifier: token, locale: locale) { (pushResponse, error) in
