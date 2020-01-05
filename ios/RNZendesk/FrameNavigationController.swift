@@ -36,9 +36,12 @@ class FrameNavigationController: UINavigationController {
     }
 
     func clearLeftButton() {
-        // Now and again in 0.5 seconds to be fucking safe
+        // Now and again in 0.5 and 1 seconds to be fucking safe
         self.performClear()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.performClear()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.performClear()
         }
     }
