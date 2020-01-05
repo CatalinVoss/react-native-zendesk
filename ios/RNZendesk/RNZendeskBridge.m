@@ -27,5 +27,6 @@ RCT_EXTERN_METHOD(unregisterPushNotifications);
 RCT_EXTERN_METHOD(showHelpCenter:(NSDictionary *)options);
 RCT_EXTERN_METHOD(showNewTicket:(NSDictionary *)options);
 RCT_EXTERN_METHOD(showTicketList);
+RCT_EXTERN_METHOD(showTicketListWithCustomAction:(RCTResponseSenderBlock)callback);
 
 @end

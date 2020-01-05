@@ -134,6 +134,9 @@ class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
             UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
         }
     }
+
+    @objc func showTicketListWithCustomAction(_ callback: @escaping RCTResponseSenderBlock) -> Void {
+    }
     
     // MARK: - View Controller Lifecycle
     
