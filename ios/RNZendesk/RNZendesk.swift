@@ -142,18 +142,12 @@ class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
     
     // Hack away Zendesk exit button whenever we return to root
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        self.clearLeftButton(navigationController)
+        let controller = navigationController as! FrameNavigationController
+        controller.clearLeftButton()
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        self.clearLeftButton(navigationController)
-    }
-
-    func clearLeftButton(_ navigationController: UINavigationController) {
-        if (navigationController.viewControllers.count == 1) {
-            let emptyButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-            navigationController.navigationBar.topItem?.leftBarButtonItem = emptyButton
-            navigationController.visibleViewController?.navigationItem.leftBarButtonItem = emptyButton
-        }
+        let controller = navigationController as! FrameNavigationController
+        controller.clearLeftButton()
     }
 }
