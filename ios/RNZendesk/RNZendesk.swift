@@ -136,6 +136,14 @@ class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
     }
 
     @objc func showTicketListWithCustomAction(_ callback: @escaping RCTResponseSenderBlock) -> Void {
+        DispatchQueue.main.async {
+            let requestListController = RequestUi.buildRequestList()
+            let nvc = FrameNavigationController(rootViewController: requestListController)
+            nvc.exitCallback = callback
+            nvc.delegate = self
+            nvc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            UIApplication.shared.keyWindow?.rootViewController?.present(nvc, animated: false)
+        }
     }
     
     // MARK: - View Controller Lifecycle
