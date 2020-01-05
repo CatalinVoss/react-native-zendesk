@@ -136,7 +136,7 @@ class RNZendesk: RCTEventEmitter, UINavigationControllerDelegate {
     }
 
     @objc func showTicketListWithCustomAction(_ callback: @escaping RCTResponseSenderBlock) -> Void {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [callback] in
             let requestListController = RequestUi.buildRequestList()
             let nvc = FrameNavigationController(rootViewController: requestListController)
             nvc.exitCallback = callback

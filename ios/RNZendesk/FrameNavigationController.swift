@@ -13,7 +13,7 @@
 import Foundation
 
 class FrameNavigationController: UINavigationController {
-    var exitCallback:RCTResponseSenderBlock? = nil
+    public var exitCallback:RCTResponseSenderBlock? = nil
     
     @objc func exit(sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: UIAlertController.Style.alert)
@@ -27,7 +27,7 @@ class FrameNavigationController: UINavigationController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func performClear() {
+    public func performClear() {
         if (self.viewControllers.count == 1) {
             let exitButton = UIBarButtonItem(image: UIImage(named: "logout"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(exit(sender:)))
             self.navigationBar.topItem?.leftBarButtonItem = exitButton
